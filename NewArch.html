@@ -8,17 +8,38 @@
     <title>Document</title>
 </head>
 <body>
+
+        <div id="tempData"></div>
+
         <script type="text/javascript">
-        const queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk(%22business%22)&api-key=W9V9TH0s6SXeqaojMI64o6rrvIzykjyk"
+        var keyWordUrl = "Harry Truman"
+        var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=" + keyWordUrl + "news_desk(%22business%22)&api-key=W9V9TH0s6SXeqaojMI64o6rrvIzykjyk&limit=10";
         
         $.ajax({
         url: queryURL,
         method: "GET"
         })
 
+        //we need to search for keyword Q
+
+        //limit 
+
+        //Optional: Start and end Date
+
+
+        //Search button & Clear results
+
         //wait until you get a response then execute funtion ()
-       .then(function(response) {
-});
+       .then(function(apiObj) {
+        var searchDiv = $("<div>")
+        // var LimitUrl = response.data.image_original_url;
+        console.log(apiObj.response)
+        console.log("are we active?")
+        console.log(keyWordUrl)
+        searchDiv.text(apiObj.response.docs[0].keywords[0].value);
+        $("#tempData").prepend(searchDiv)
+
+        });
         </script>
     
 </body>
